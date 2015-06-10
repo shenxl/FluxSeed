@@ -1,0 +1,19 @@
+{
+  "name": "startFlux",
+  "version": "0.0.1",
+  "authors": [
+    "shenxl <shen.sxl@icloud.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/shenxl/ReactFlux.git",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4"
+  }
+}

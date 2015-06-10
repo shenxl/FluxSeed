@@ -1,0 +1,36 @@
+{
+  "name": "ReactFlux",
+  "version": "1.0.1",
+  "description": "Flux seed Project",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shenxl/ReactFlux"
+  },
+  "author": "shen.sxl@icloud.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shenxl/ReactFlux/issues"
+  },
+  "homepage": "https://github.com/shenxl/ReactFlux",
+  "dependencies": {
+    "browserify": "^10.2.4",
+    "flux": "^2.0.3",
+    "gulp": "^3.9.0",
+    "keymirror": "^0.1.1",
+    "react": "^0.13.3",
+    "react-async": "^2.1.0",
+    "react-router-component": "^0.25.1",
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "react",
+    "flux",
+    "seed"
+  ]
+}
