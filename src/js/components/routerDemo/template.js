@@ -3,7 +3,7 @@
  * 
  */
 var React = require('react');
-var Header = require('./header/header');
+var Header = require('./../header/header');
 
 var Template = React.createClass({
 
