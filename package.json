@@ -8,25 +8,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/shenxl/ReactFlux"
+    "url": "https://github.com/shenxl/FluxSeed"
   },
   "author": "shen.sxl@icloud.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shenxl/ReactFlux/issues"
+    "url": "https://github.com/shenxl/FluxSeed/issues"
   },
-  "homepage": "https://github.com/shenxl/ReactFlux",
+  "homepage": "https://github.com/shenxl/FluxSeed",
   "dependencies": {
     "browserify": "^10.2.4",
     "flux": "^2.0.3",
     "gulp": "^3.9.0",
     "gulp-sass": "^2.0.1",
     "keymirror": "^0.1.1",
-    "material-ui": "^0.9.0",
     "react": "^0.13.3",
     "react-async": "^2.1.0",
     "react-router": "^0.13.3",
-    "react-tap-event-plugin": "^0.1.7",
     "reactify": "^1.1.1",
     "vinyl-source-stream": "^1.1.0"
   },

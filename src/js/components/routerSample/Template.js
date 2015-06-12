@@ -4,15 +4,19 @@
  */
 var React = require('react');
 var Header = require('./../header/header');
+var Router = require('react-router');
+var RouteHandler = Router.RouteHandler;
 
 var Template = React.createClass({
 
 	render: function() {
 		return (
-        <div className="container">
-            <Header />
-			{this.props.children}
-        </div>
+		<div>
+			<Header />
+			<div className="container-fluid">
+				<RouteHandler />
+			</div>
+		</div>
 		);
 	}
 

@@ -18,6 +18,35 @@ var AppActions = {
     * }
     */
 
+    addPart : function(item){
+        AppDispatcher.handleViewAction({
+            actionType : AppConstants.VIEW_ACTION.ADD_PART,
+            item:item
+        })
+    },
+
+    selectItem : function(id){
+        AppDispatcher.handleViewAction({
+            actionType : AppConstants.VIEW_ACTION.SELECT_ITEM,
+            id:id
+        })
+    },
+
+    delectItem : function(id){
+        AppDispatcher.handleViewAction({
+            actionType : AppConstants.VIEW_ACTION.DELETE_ITEM,
+            id:id
+        })
+    },
+
+    updateName: function(value){
+        AppDispatcher.handleViewAction({
+            actionType : AppConstants.VIEW_ACTION.UPDATE_NAME,
+            value:value
+        })
+    }
+
+
 };
 
 module.exports  = AppActions;

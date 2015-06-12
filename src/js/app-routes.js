@@ -8,15 +8,17 @@ var Redirect = Router.Redirect;
 var DefaultRoute = Router.DefaultRoute;
 
 // Here we define all our material-ui ReactComponents.
-var Master = require('./components/routerDemo/master');
-var Home = require('./components/routerDemo/home');
-var Index = require('./components/routerDemo/Index');
-var Message = require('./components/routerDemo/Message');
+var Template = require('./components/routerSample/Template');
+var Home = require('./components/routerSample/Home');
+var Index = require('./components/routerSample/Index');
+var Message = require('./components/routerSample/Message');
+var InitSheet = require('./components/initSheet/InitSheet');
 
 
 var AppRoutes = (
-    <Route name="app" path="/" handler={Master}>
+    <Route name="app" path="/" handler={Template}>
         <Route name="home" handler={Home}/>
+        <Route name="initSheet" handler={InitSheet}/>
         <Route name="index" handler={Index}>
             <Route name="message" path="messages/:id" handler={Message}/>
         </Route>
