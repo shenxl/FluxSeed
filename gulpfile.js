@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var sass = require('gulp-sass');
 var browserify = require('browserify');
 var reactify = require('reactify');
 var source = require('vinyl-source-stream');
@@ -19,6 +20,25 @@ gulp.task('copy', function () {
         .pipe(gulp.dest('dist/assets'));
 });
 
-gulp.task('default',['browserify','copy'], function () {
-    return gulp.watch('src/**/*.*',['browserify','copy'])
+gulp.task('sass', function() {
+    gulp.src('src/sass/**/*.scss')
+        .pipe(sass({
+            errLogToConsole: true
+        }))
+        .pipe(gulp.dest('dist/css'));
+});
+
+gulp.task('css', function() {
+    return gulp.src("src/css/*.css")
+        .pipe(gulp.dest('dist/css'));
+});
+
+gulp.task('font', function() {
+    return gulp.src("src/css/font-icons/**")
+        .pipe(gulp.dest('dist/css/font-icons'));
+});
+
+
+gulp.task('default',['browserify','copy','font','css'], function () {
+    return gulp.watch('src/**/*.*',['browserify','copy','font','css'])
 });

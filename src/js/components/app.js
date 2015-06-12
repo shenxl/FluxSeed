@@ -3,11 +3,13 @@
  */
 
 var React = require('react');
-var Template = require('./template');
+var Template = require('./routerDemo/template');
 var Router = require('react-router-component');
 
 var Locations = Router.Locations;
 var Location = Router.Location;
+
+
 
 var App = React.createClass({
 
@@ -15,7 +17,7 @@ var App = React.createClass({
         return (
             <Template>
                 <Locations>
-                    <Location path="/" handler={}></Location>
+
                 </Locations>
             </Template>
         );

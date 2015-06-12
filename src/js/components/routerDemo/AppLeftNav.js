@@ -21,28 +21,11 @@ var React = require('react'),
 
 
 var menuItems = [
-    { route: 'get-started', text: 'Get Started' },
-    { route: 'customization', text: 'Customization' },
-    { route: 'components', text: 'Components' },
-    { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
-    {
-        type: MenuItem.Types.LINK,
-        payload: 'https://github.com/callemall/material-ui',
-        text: 'GitHub'
-    },
-    {
-        text: 'Disabled',
-        disabled: true
-    },
-    {
-        type: MenuItem.Types.LINK,
-        payload: 'https://www.google.com',
-        text: 'Disabled Link',
-        disabled: true
-    }
+    { route: 'home', text: 'Home' },
+    { route: 'index', text: 'Index' }
 ];
 
-var App = React.createClass({
+var Master = React.createClass({
 
     childContextTypes: {
         muiTheme: React.PropTypes.object
@@ -58,20 +41,20 @@ var App = React.createClass({
         };
     },
 
-    //getStyles : function() {
-    //    return {
-    //        cursor: 'pointer',
-    //        //.mui-font-style-headline
-    //        fontSize: '24px',
-    //        color: Typography.textFullWhite,
-    //        lineHeight: Spacing.desktopKeylineIncrement + 'px',
-    //        fontWeight: Typography.fontWeightLight,
-    //        backgroundColor: Colors.cyan500,
-    //        paddingLeft: Spacing.desktopGutter,
-    //        paddingTop: '0px',
-    //        marginBottom: '8px'
-    //    };
-    //},
+    getStyles : function() {
+        return {
+            cursor: 'pointer',
+            //.mui-font-style-headline
+            fontSize: '24px',
+            color: Typography.textFullWhite,
+            lineHeight: Spacing.desktopKeylineIncrement + 'px',
+            fontWeight: Typography.fontWeightLight,
+            backgroundColor: Colors.cyan500,
+            paddingLeft: Spacing.desktopGutter,
+            paddingTop: '0px',
+            marginBottom: '8px'
+        };
+    },
 
     toggle:function() {
         this.refs.leftNav.toggle();
@@ -82,24 +65,24 @@ var App = React.createClass({
 
         for (var i = menuItems.length - 1; i >= 0; i--) {
             currentItem = menuItems[i];
-            //if (currentItem.route && this.context.router.isActive(currentItem.route)) return i;
+            if (currentItem.route && this.context.router.isActive(currentItem.route)) return i;
         }
     },
 
     _onLeftNavChange:function(e, key, payload) {
-        //this.context.router.transitionTo(payload.route);
+        this.context.router.transitionTo(payload.route);
     },
 
     _onHeaderClick:function() {
-        //this.context.router.transitionTo('root');
+        this.context.router.transitionTo('app');
         this.refs.leftNav.close();
     },
 
 	render: function() {
 
         var header = (
-            <div onTouchTap={this._onHeaderClick}>
-                UI Demo
+            <div style={this.getStyles()}  onTouchTap={this._onHeaderClick}>
+                App Tester
             </div>
         );
 
@@ -113,11 +96,9 @@ var App = React.createClass({
                     menuItems={menuItems}
                     selectedIndex={this._getSelectedIndex()}
                     onChange={this._onLeftNavChange} />
-            <RouteHandler />
             </div>
 		);
 	}
-
 });
 
-module.exports = App;
+module.exports = Master;
