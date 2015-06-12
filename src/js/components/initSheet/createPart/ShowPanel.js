@@ -6,7 +6,7 @@ var AppConstants =require('../../../constants/AppConstants');
 
 var Input = require('../../sheetParts/input/Input');
 var TextArea = require('../../sheetParts/textarea/TextArea');
-var Radio = require('../../sheetParts/radio/Radio');
+var Radio = require('../../sheetParts/choose/Radio');
 
 var ShowPanel = React.createClass({
 
@@ -24,11 +24,14 @@ var ShowPanel = React.createClass({
                 case AppConstants.PART_TYPE.RADIO_CONTROL:
                     controls.push(<Radio data={item} key={index}/>);
                     break;
+                case AppConstants.PART_TYPE.CHECKBOX_CONTROL:
+                    controls.push(<Radio data={item} key={index}/>);
+                break;
             }
         });
 
 		return (
-            <div className="col-md-6">
+            <div className="col-md-6" >
                 <h2>控件展示面板</h2>
                 <ul>
                     {controls}

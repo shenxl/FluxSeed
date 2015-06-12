@@ -10,9 +10,13 @@ var Radio = React.createClass({
 
 	render: function() {
         var itemList = [];
+        var itemid = this.props.data.id;
         this.props.data.itemsData.forEach(function (item, index){
             itemList.push(
-                <RadioItem item={item} key={index}/>
+                <span key={index} >
+                    <RadioItem itemId={itemid} item={item}/>
+                    <label>{item.value}</label>
+                </span>
             )
         });
 

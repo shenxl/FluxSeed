@@ -54,22 +54,18 @@ var _initParts = [
             'itemsData':[
                 {
                     type:'radio',
-                    value: '选项1',
                     checked: true
                 },
                 {
                     type: 'radio',
-                    value: '选项2',
                     checked: false
                 },
                 {
                     type:'radio',
-                    value: '选项3',
                     checked: false
                 },
                 {
                     type:'radio',
-                    value: '选项4',
                     checked: false
                 }],
             'validate': {
@@ -88,9 +84,23 @@ var _initParts = [
             'name': '未命名',
             'default': '',
             'tooltip': '',
-            'itemsData':{
-
-            },
+            'itemsData':[
+                {
+                    type:'checkbox',
+                    checked: true
+                },
+                {
+                    type: 'checkbox',
+                    checked: false
+                },
+                {
+                    type:'checkbox',
+                    checked: false
+                },
+                {
+                    type:'checkbox',
+                    checked: false
+                }],
             'validate': {
                 'isRequire': false,
                 'isDuplicate': false,
@@ -121,11 +131,11 @@ function _addPart(item){
             var _tempitem = assign({},item);
             _tempitem.id =  item.type + showItem.id +'_' +_itemcount;
             _tempitem.name = item.type + showItem.id;
-
+            _tempitem.value = "选项" + (_itemcount + 1);
             _itemcount ++;
             return _tempitem;
         });
-
+        showItem.mark = _itemcount;
     }
     _showPart.push(showItem);
     _addTimes ++;
@@ -152,6 +162,68 @@ function _updataName(value){
     _selectPart.name = value;
 }
 
+function _changeRadioStatue(itemId,radioId,value){
+    var _changePart = null;
+    _showPart.forEach(function(item){
+        if (item.id === itemId){
+            _changePart = item;
+        }
+    });
+    _changePart.itemsData.forEach(function(item){
+        if(item.type === 'radio'){
+            item.checked = false;
+        }
+        if(item.id === radioId){
+            item.checked = value;
+        }
+    })
+
+}
+
+function _changeRadioLabel(itemId,radioId,value){
+    var _changePart = null;
+    _showPart.forEach(function(item){
+        if (item.id === itemId){
+            _changePart = item;
+        }
+    });
+    _changePart.itemsData.forEach(function(item){
+        if(item.id === radioId){
+            item.value = value;
+        }
+    })
+}
+
+function _addChooseItem(itemId,index){
+    var _changePart = null;
+    _showPart.forEach(function(item){
+        if (item.id === itemId){
+            _changePart = item;
+        }
+    });
+    var oldItem = _changePart.itemsData[index];
+    var mark = _changePart.mark;
+    var addItem = {
+        id : oldItem.name +'_' +mark,
+        name : oldItem.name ,
+        type : oldItem.type,
+        value : "选项" + (mark + 1),
+        checked : false
+    };
+    _changePart.mark = mark + 1;
+    _changePart.itemsData.splice(index + 1, 0, addItem);
+}
+
+function _removeChooseItem(itemId,index){
+    var _changePart = null;
+    _showPart.forEach(function(item){
+        if (item.id === itemId){
+            _changePart = item;
+        }
+    });
+    _changePart.itemsData.splice(index, 1);
+
+}
 
 var AppStore = assign({}, EventEmitter.prototype, {
 
@@ -194,6 +266,22 @@ var AppStore = assign({}, EventEmitter.prototype, {
             case AppConstants.VIEW_ACTION.UPDATE_NAME:
                 _updataName(payload.action.value);
                 break;
+            case AppConstants.VIEW_ACTION.CHANGE_RADIO_STATUE:
+                _changeRadioStatue(payload.action.itemId,
+                    payload.action.radioId,payload.action.value);
+                break;
+            case AppConstants.VIEW_ACTION.CHANGE_RADIO_LABEL:
+                _changeRadioLabel(payload.action.itemId,
+                    payload.action.radioId,payload.action.value);
+                break;
+            case AppConstants.VIEW_ACTION.ADD_CHOOSE_ITEM:
+                _addChooseItem(payload.action.itemId, payload.action.index);
+                break;
+            case AppConstants.VIEW_ACTION.REMOVE_CHOOSE_ITEM:
+                _removeChooseItem(payload.action.itemId, payload.action.index);
+                break;
+
+
         }
         AppStore.emitChange();
         return true;

@@ -9,7 +9,10 @@ var Constants = {
         'ADD_PART' : null,
         'SELECT_ITEM':null,
         'DELETE_ITEM':null,
-        'UPDATE_NAME':null
+        'UPDATE_NAME':null,
+        'CHANGE_RADIO_STATUE':null,
+        'CHANGE_RADIO_LABEL':null,
+        'ADD_CHOOSE_ITEM':null
     }),
     'PART_TYPE':keymirror({
         'CHECKBOX_CONTROL' : null,

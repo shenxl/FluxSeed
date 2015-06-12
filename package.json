@@ -20,7 +20,6 @@
     "browserify": "^10.2.4",
     "flux": "^2.0.3",
     "gulp": "^3.9.0",
-    "gulp-sass": "^2.0.1",
     "keymirror": "^0.1.1",
     "react": "^0.13.3",
     "react-async": "^2.1.0",

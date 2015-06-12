@@ -9,7 +9,7 @@ var DeleteBtn = React.createClass({
 	},
 	render: function() {
 		return (
-            <button onClick={this.handleClick}>删除</button>
+            <button className="btn btn-danger" onClick={this.handleClick}>删除</button>
 		);
 	}
 

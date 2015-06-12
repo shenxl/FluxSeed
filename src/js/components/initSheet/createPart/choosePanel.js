@@ -9,7 +9,7 @@ var ChoosePanel = React.createClass({
 	render: function() {
 		var icons = this.props.items.map(function (item) {
 			return (
-				<div className="col-md-6"  key={item.id}>
+				<div className="col-md-8"  key={item.id}>
 					<PartIcon label={item.label} item={item} className={item.icon}/>
 				</div>
 			);

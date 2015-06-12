@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var sass = require('gulp-sass');
 var browserify = require('browserify');
 var reactify = require('reactify');
 var source = require('vinyl-source-stream');
@@ -18,14 +17,6 @@ gulp.task('copy', function () {
         .pipe(gulp.dest('dist'));
     gulp.src('src/assets/**/*.*')
         .pipe(gulp.dest('dist/assets'));
-});
-
-gulp.task('sass', function() {
-    gulp.src('src/sass/**/*.scss')
-        .pipe(sass({
-            errLogToConsole: true
-        }))
-        .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('css', function() {

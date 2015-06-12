@@ -39,10 +39,42 @@ var AppActions = {
         })
     },
 
-    updateName: function(value){
+    updateName : function(value){
         AppDispatcher.handleViewAction({
             actionType : AppConstants.VIEW_ACTION.UPDATE_NAME,
             value:value
+        })
+    },
+
+    changeRadioStatus : function(itemId,radioId,value){
+        AppDispatcher.handleViewAction({
+            actionType : AppConstants.VIEW_ACTION.CHANGE_RADIO_STATUE,
+            itemId:itemId,
+            radioId:radioId,
+            value:value
+        })
+    },
+
+    changeRaidoLabel : function(itemId,radioId,value){
+        AppDispatcher.handleViewAction({
+            actionType : AppConstants.VIEW_ACTION.CHANGE_RADIO_LABEL,
+            itemId:itemId,
+            radioId:radioId,
+            value:value
+        })
+    },
+    addChooseItem : function(itemId,index){
+        AppDispatcher.handleViewAction({
+            actionType : AppConstants.VIEW_ACTION.ADD_CHOOSE_ITEM,
+            itemId:itemId,
+            index:index
+        })
+    },
+    removeChooseItem : function(itemId,index){
+        AppDispatcher.handleViewAction({
+            actionType : AppConstants.VIEW_ACTION.REMOVE_CHOOSE_ITEM,
+            itemId:itemId,
+            index:index
         })
     }
 

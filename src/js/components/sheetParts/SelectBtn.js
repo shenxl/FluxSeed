@@ -11,7 +11,7 @@ var SelectBtn = React.createClass({
 
 	render: function() {
 		return (
-            <button onClick={this.handleClick}>选中</button>
+            <button className="btn btn-success" onClick={this.handleClick}>选中</button>
 		);
 	}
 
