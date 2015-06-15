@@ -7,12 +7,16 @@ var Constants = {
     'CHANGE_EVENT' :  "change",
     'VIEW_ACTION':keymirror({
         'ADD_PART' : null,
+        'SORT_PARTS_ITEM':null,
         'SELECT_ITEM':null,
         'DELETE_ITEM':null,
+        'COPY_ITEM':null,
         'UPDATE_NAME':null,
         'CHANGE_RADIO_STATUE':null,
         'CHANGE_RADIO_LABEL':null,
-        'ADD_CHOOSE_ITEM':null
+        'ADD_CHOOSE_ITEM':null,
+        'REMOVE_CHOOSE_ITEM':null,
+        'CHANGE_DEFAULT':null
     }),
     'PART_TYPE':keymirror({
         'CHECKBOX_CONTROL' : null,

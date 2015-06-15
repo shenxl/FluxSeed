@@ -2,7 +2,55 @@ body {
   padding-top: 50px;
   min-height: 900px;
 }
+
+
+.placeholder {
+  display: inline-block;
+  width: 600px;
+  height: 100px;
+  border: 1px dashed #ddd;
+  background-color: #f3f5f7;
+  margin: 10px 20px 10px 0;
+  font-size: 1.3em;
+  font-weight: bold;
+  vertical-align: middle;
+  color: #777;
+}
+
 .choosepanel{
   margin-left: 4px;
   margin-top: 3px;
+}
+
+.item {
+  list-style-type: none;
+  margin: 15px;
+  padding: 0 5px 0 0;
+  min-width:600px;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 3px;
+  font-size: 1.3em;
+}
+
+.handler {
+  display: inline-block;
+  width: 30px;
+  margin-right: 10px;
+  border-radius: 3px 0 0 3px;
+  font-size:20px;
+}
+
+.handler:hover {
+  color: #2db245;
+}
+
+.hint {
+  border: 2px solid #2db245;
+  border-radius: 6px;
+  min-width:600px;
+}
+
+.hint .handler {
+  color: #2db245;
 }

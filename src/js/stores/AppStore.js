@@ -108,13 +108,30 @@ var _initParts = [
                 'maxLenght': 1000
             }
         }
+    },
+    {
+        'id': 5,
+        'type': AppConstants.PART_TYPE.DATE_CONTROL,
+        'icon': 'glyphicon glyphicon-calendar',
+        'label': '日期选择',
+        'partData': {
+            'name': '未命名',
+            'default': '',
+            'tooltip': '',
+            'validate': {
+                'isRequire': false,
+                'isDuplicate': false,
+                'minLenght': 0,
+                'maxLenght': 1000
+            }
+        }
     }
-
 ];
 
-var _showPart=[];
+var _showParts=[];
 var _selectPart={};
-var _addTimes = _showPart.length;
+var _addTimes = _showParts.length;
+var _saveParts = [];
 
 // 向页面中添加一个控件
 function _addPart(item){
@@ -137,25 +154,76 @@ function _addPart(item){
         });
         showItem.mark = _itemcount;
     }
-    _showPart.push(showItem);
+    _showParts.push(showItem);
     _addTimes ++;
     _selectPart = showItem;
+    // Todo ：排序可能会导致DOM混乱 暂时的解决方法
+    _saveParts =_showParts.slice();
+}
+
+function _sortPartsItem(newIndex,oldIndex){
+
+    // Todo ：排序可能会导致DOM混乱 暂时的解决方法
+    _saveParts =_showParts.slice();
+    if (newIndex >= _saveParts.length) {
+        var k = newIndex - _saveParts.length;
+        while ((k--) + 1) {
+            _saveParts.push(undefined);
+        }
+    }
+    _saveParts.splice(newIndex, 0, _saveParts.splice(oldIndex, 1)[0]);
+
 }
 
 function _selectItem(id){
-    _showPart.forEach(function(item){
+    _showParts.forEach(function(item){
         if(item.id === id){
             _selectPart = item;
         }
     })
 }
 
+function _copyItem(id,index){
+    _showParts.forEach(function(item){
+        if(item.id === id){
+            _selectPart = item;
+        }
+    });
+    var addItem = assign({},_selectPart);
+    addItem.id = _selectPart.id.split('_')[0] + '_' + _addTimes;
+
+    // 如果有附属属性，则添加附属属性的ID 与 Name 保证ID不唯一 Name 相同
+    if( addItem.type === AppConstants.PART_TYPE.RADIO_CONTROL ||
+        addItem.type === AppConstants.PART_TYPE.CHECKBOX_CONTROL ){
+        var _itemCount = 0;
+        var items = addItem.itemsData.slice();
+        addItem.itemsData =  items.map(function(item){
+            var _tempitem = assign({},item);
+            _tempitem.id =  item.type + addItem.id +'_' +_itemCount;
+            _tempitem.name = item.type + addItem.id;
+            _tempitem.value = item.value;
+            _itemCount ++;
+            return _tempitem;
+        });
+    }
+
+    _showParts.splice(index + 1, 0, addItem);
+    _addTimes++;
+    // Todo ：排序可能会导致DOM混乱 暂时的解决方法
+    _saveParts =_showParts.slice();
+}
+
+
+
 function _deleteItem(id){
-    for(var i = _showPart.length; i--;) {
-        if(_showPart[i].id === id) {
-            _showPart.splice(i, 1);
+    for(var i = _showParts.length; i--;) {
+        if(_showParts[i].id === id) {
+            _showParts.splice(i, 1);
         }
     }
+    _selectPart = {};
+    // Todo ：排序可能会导致DOM混乱 暂时的解决方法
+    _saveParts =_showParts.slice();
 }
 
 function _updataName(value){
@@ -164,7 +232,7 @@ function _updataName(value){
 
 function _changeRadioStatue(itemId,radioId,value){
     var _changePart = null;
-    _showPart.forEach(function(item){
+    _showParts.forEach(function(item){
         if (item.id === itemId){
             _changePart = item;
         }
@@ -181,13 +249,8 @@ function _changeRadioStatue(itemId,radioId,value){
 }
 
 function _changeRadioLabel(itemId,radioId,value){
-    var _changePart = null;
-    _showPart.forEach(function(item){
-        if (item.id === itemId){
-            _changePart = item;
-        }
-    });
-    _changePart.itemsData.forEach(function(item){
+
+    _selectPart.itemsData.forEach(function(item){
         if(item.id === radioId){
             item.value = value;
         }
@@ -195,12 +258,7 @@ function _changeRadioLabel(itemId,radioId,value){
 }
 
 function _addChooseItem(itemId,index){
-    var _changePart = null;
-    _showPart.forEach(function(item){
-        if (item.id === itemId){
-            _changePart = item;
-        }
-    });
+    var _changePart = _selectPart;
     var oldItem = _changePart.itemsData[index];
     var mark = _changePart.mark;
     var addItem = {
@@ -215,15 +273,14 @@ function _addChooseItem(itemId,index){
 }
 
 function _removeChooseItem(itemId,index){
-    var _changePart = null;
-    _showPart.forEach(function(item){
-        if (item.id === itemId){
-            _changePart = item;
-        }
-    });
+    var _changePart = _selectPart;
     _changePart.itemsData.splice(index, 1);
-
 }
+
+function _changeDefault(value){
+    _selectPart.default = value;
+}
+
 
 var AppStore = assign({}, EventEmitter.prototype, {
 
@@ -244,11 +301,15 @@ var AppStore = assign({}, EventEmitter.prototype, {
     },
 
     getShowItems: function () {
-        return _showPart;
+        return _showParts;
     },
 
     getSelectItem: function () {
         return _selectPart;
+    },
+
+    getSaveItem:function() {
+        return _saveParts;
     },
     dispatcherIndex: AppDispatcher.register(function (payload) {
         var action = payload.action; // this is our action from handleViewAction
@@ -257,8 +318,14 @@ var AppStore = assign({}, EventEmitter.prototype, {
             case  AppConstants.VIEW_ACTION.ADD_PART:
                 _addPart(payload.action.item);
                 break;
+            case  AppConstants.VIEW_ACTION.SORT_PARTS_ITEM:
+                _sortPartsItem(payload.action.newIndex,payload.action.oldIndex);
+                break;
             case AppConstants.VIEW_ACTION.SELECT_ITEM:
                 _selectItem(payload.action.id);
+                break;
+            case AppConstants.VIEW_ACTION.COPY_ITEM:
+                _copyItem(payload.action.id,payload.action.index);
                 break;
             case AppConstants.VIEW_ACTION.DELETE_ITEM:
                 _deleteItem(payload.action.id);
@@ -280,7 +347,9 @@ var AppStore = assign({}, EventEmitter.prototype, {
             case AppConstants.VIEW_ACTION.REMOVE_CHOOSE_ITEM:
                 _removeChooseItem(payload.action.itemId, payload.action.index);
                 break;
-
+            case AppConstants.VIEW_ACTION.CHANGE_DEFAULT:
+                _changeDefault(payload.action.value);
+                break;
 
         }
         AppStore.emitChange();

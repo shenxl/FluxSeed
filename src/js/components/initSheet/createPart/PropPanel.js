@@ -4,7 +4,11 @@
 var React = require('react');
 var AppActions = require('../../../actions/AppAction');
 var AppConstants = require('../../../constants/AppConstants');
+
+var InputProps = require('../../sheetParts/input/InputProps');
 var RadioProps = require('../../sheetParts/choose/RadioProps');
+var DateProps = require('../../sheetParts/date/DateProps');
+var TextAreaProps = require('../../sheetParts/textarea/TextAreaProps');
 
 var PropPanel = React.createClass({
 
@@ -18,11 +22,20 @@ var PropPanel = React.createClass({
         if(selectItem.id !== undefined){
             var _specialProps = null;
             switch(selectItem.type){
+                case AppConstants.PART_TYPE.INPUT_CONTROL:
+                    _specialProps = (<InputProps data={selectItem} />);
+                    break;
+                case AppConstants.PART_TYPE.TEXTAREA_CONTROL:
+                    _specialProps = (<TextAreaProps data={selectItem} />);
+                    break;
                 case AppConstants.PART_TYPE.RADIO_CONTROL:
                     _specialProps = (<RadioProps data={selectItem} />);
                     break;
                 case AppConstants.PART_TYPE.CHECKBOX_CONTROL:
                     _specialProps = (<RadioProps data={selectItem} />);
+                    break;
+                case AppConstants.PART_TYPE.DATE_CONTROL:
+                    _specialProps = (<DateProps data={selectItem} />);
                     break;
             }
             show = (

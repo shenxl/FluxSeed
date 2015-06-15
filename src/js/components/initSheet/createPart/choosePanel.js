@@ -3,8 +3,12 @@
  */
 var React = require('react');
 var PartIcon = require('./PartIcon');
+var AppStore = require('../../../stores/AppStore');
 
 var ChoosePanel = React.createClass({
+	handlerClick:function(){
+		console.log(AppStore.getSaveItem());
+	},
 
 	render: function() {
 		var icons = this.props.items.map(function (item) {
@@ -21,6 +25,7 @@ var ChoosePanel = React.createClass({
 			<div className="row">
 				{icons}
 			</div>
+			<button onClick={this.handlerClick}>保存</button>
         </div>
 		);
 	}

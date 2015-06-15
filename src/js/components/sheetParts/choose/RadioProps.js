@@ -6,7 +6,7 @@ var RadioItem = require('./RadioItem');
 var AddItem = require('./AddItem');
 var RemoveItem = require('./RemoveItem');
 var DeleteBtn = require('../DeleteBtn');
-var SelectBtn = require('../SelectBtn');
+var SelectBtn = require('../CopyBtn');
 
 var AppAction = require('../../../actions/AppAction');
 

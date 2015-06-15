@@ -25,12 +25,29 @@ var AppActions = {
         })
     },
 
+    sortPartsItem:function(newIndex,oldIndex){
+        AppDispatcher.handleViewAction({
+            actionType : AppConstants.VIEW_ACTION.SORT_PARTS_ITEM,
+            newIndex:newIndex,
+            oldIndex:oldIndex
+        })
+    },
+
     selectItem : function(id){
         AppDispatcher.handleViewAction({
             actionType : AppConstants.VIEW_ACTION.SELECT_ITEM,
             id:id
         })
     },
+
+    copyItem : function(id,index){
+        AppDispatcher.handleViewAction({
+            actionType : AppConstants.VIEW_ACTION.COPY_ITEM,
+            id:id,
+            index :index
+        })
+    },
+
 
     delectItem : function(id){
         AppDispatcher.handleViewAction({
@@ -75,6 +92,12 @@ var AppActions = {
             actionType : AppConstants.VIEW_ACTION.REMOVE_CHOOSE_ITEM,
             itemId:itemId,
             index:index
+        })
+    },
+    changeDefault :function(value){
+        AppDispatcher.handleViewAction({
+            actionType : AppConstants.VIEW_ACTION.CHANGE_DEFAULT,
+            value:value
         })
     }
 

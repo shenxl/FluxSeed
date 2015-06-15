@@ -4,7 +4,7 @@
 var React = require('react');
 var AppAction = require('../../../actions/AppAction');
 
-var InputProps = React.createClass({
+var TextAreaProps = React.createClass({
 
 	handleChange:function(e){
 		var value = e.target.value;
@@ -15,11 +15,11 @@ var InputProps = React.createClass({
 			<li>
 				<label>默认值</label>
 				<br/>
-				<input type="text" onChange={this.handleChange} />
+				<textarea value={this.props.data.default} name="" cols="65" rows="4" onChange={this.handleChange}></textarea>
 			</li>
 		);
 	}
 
 });
 
-module.exports = InputProps;
+module.exports = TextAreaProps;

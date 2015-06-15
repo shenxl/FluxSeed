@@ -6,7 +6,7 @@ var AppAction = require('../../actions/AppAction');
 
 var CopyBtn = React.createClass({
 	handleClick:function(){
-		AppAction.selectItem(this.props.itemId);
+		AppAction.copyItem(this.props.itemId,this.props.index);
 	},
 
 	render: function() {

@@ -4,30 +4,29 @@
 var React = require('react');
 var RadioItem = require('./RadioItem');
 var DeleteBtn = require('../DeleteBtn');
-var SelectBtn = require('../SelectBtn');
+var CopyBtn = require('../CopyBtn');
 
 var Radio = React.createClass({
-
 	render: function() {
         var itemList = [];
         var itemid = this.props.data.id;
         this.props.data.itemsData.forEach(function (item, index){
             itemList.push(
                 <span key={index} >
-                    <RadioItem itemId={itemid} item={item}/>
+                    <RadioItem itemId={itemid} item={item} readonly={true}/>
                     <label>{item.value}</label>
                 </span>
             )
         });
 
 		return (
-            <li>
+            <div>
                 <label>{this.props.data.name}</label>
-                <SelectBtn itemId={this.props.data.id}/>
+                <CopyBtn itemId={this.props.data.id} index={this.props.index}/>
                 <DeleteBtn itemId={this.props.data.id}/>
                 <br/>
                 {itemList}
-            </li>
+            </div>
 		);
 	}
 

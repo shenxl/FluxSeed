@@ -9,6 +9,7 @@ var AddItem = React.createClass({
     handleChick:function(){
         AppAction.addChooseItem(this.props.itemId,this.props.index);
     },
+
 	render: function() {
 		return (
             <button onClick={this.handleChick}>+</button>

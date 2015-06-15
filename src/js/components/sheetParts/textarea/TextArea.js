@@ -6,18 +6,19 @@
  */
 var React = require('react');
 var DeleteBtn = require('../DeleteBtn');
-var SelectBtn = require('../SelectBtn');
+var CopyBtn = require('../CopyBtn');
 
 var TextArea = React.createClass({
+
     render: function() {
         return (
-            <li>
+            <div>
                 <label>{this.props.data.name}</label>
-                <SelectBtn itemId={this.props.data.id}/>
+                <CopyBtn itemId={this.props.data.id} index={this.props.index}/>
                 <DeleteBtn itemId={this.props.data.id}/>
                 <br/>
-                <textarea name="" cols="65" rows="4"></textarea>
-            </li>
+                <textarea value={this.props.data.default}  name="" cols="65" rows="4" readOnly="readOnly"></textarea>
+            </div>
         );
     }
 

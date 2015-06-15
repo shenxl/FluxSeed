@@ -11,8 +11,11 @@ var ShowPartPanel = React.createClass({
 
 	render: function() {
 		return (
-        <li onClick={this.handleChick}>
-            
+        <li onClick={this.handleChick} className="item sortable">
+            <div className="row">
+                <div className="col-md-11">{this.props.node}</div>
+                <div className="col-md-1"><sapn className="glyphicon glyphicon-align-justify handler"></sapn></div>
+            </div>
         </li>
 		);
 	}

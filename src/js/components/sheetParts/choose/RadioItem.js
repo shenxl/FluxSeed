@@ -6,7 +6,12 @@ var AppAction = require('../../../actions/AppAction');
 
 var RadioItem = React.createClass({
     handleChange:function(e){
-        AppAction.changeRadioStatus(this.props.itemId,this.props.item.id,e.target.checked)
+        if(this.props.readonly){
+            return false;
+        }
+        else {
+            AppAction.changeRadioStatus(this.props.itemId, this.props.item.id, e.target.checked)
+        }
     },
     render: function () {
         var name = this.props.item.name;
