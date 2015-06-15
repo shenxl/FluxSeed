@@ -4,17 +4,17 @@
 var React = require('react');
 var AppAction = require('../../actions/AppAction');
 
-var SelectBtn = React.createClass({
+var CopyBtn = React.createClass({
 	handleClick:function(){
 		AppAction.selectItem(this.props.itemId);
 	},
 
 	render: function() {
 		return (
-            <button className="btn btn-success" onClick={this.handleClick}>选中</button>
+            <button className="btn btn-success" onClick={this.handleClick}>复制</button>
 		);
 	}
 
 });
 
-module.exports = SelectBtn;
+module.exports = CopyBtn;
