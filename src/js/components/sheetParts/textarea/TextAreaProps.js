@@ -15,7 +15,7 @@ var TextAreaProps = React.createClass({
 			<li>
 				<label>默认值</label>
 				<br/>
-				<textarea value={this.props.data.default} name="" cols="65" rows="4" onChange={this.handleChange}></textarea>
+				<textarea value={this.props.data.default} name="" cols="40" rows="4" onChange={this.handleChange}></textarea>
 			</li>
 		);
 	}

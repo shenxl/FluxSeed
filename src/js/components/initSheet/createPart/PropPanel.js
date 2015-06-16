@@ -4,13 +4,22 @@
 var React = require('react');
 var AppActions = require('../../../actions/AppAction');
 var AppConstants = require('../../../constants/AppConstants');
+var AppStore = require('../../../stores/AppStore');
+var StoreWatchMixin = require('../../../mixins/storeWatchMixin');
 
 var InputProps = require('../../sheetParts/input/InputProps');
 var RadioProps = require('../../sheetParts/choose/RadioProps');
 var DateProps = require('../../sheetParts/date/DateProps');
 var TextAreaProps = require('../../sheetParts/textarea/TextAreaProps');
 
+function getSelectItem(){
+    return {
+        item : AppStore.getSelectItem()
+    }
+}
+
 var PropPanel = React.createClass({
+    mixins:[StoreWatchMixin(getSelectItem)],
 
     handleChange :function(e){
         AppActions.updateName(e.target.value);
@@ -18,7 +27,7 @@ var PropPanel = React.createClass({
     
 	render: function() {
         var show = (<pre>当前未选择控件，请从左侧拖动</pre>);
-        var selectItem = this.props.item;
+        var selectItem = this.state.item;
         if(selectItem.id !== undefined){
             var _specialProps = null;
             switch(selectItem.type){

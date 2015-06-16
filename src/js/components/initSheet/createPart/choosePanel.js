@@ -7,7 +7,7 @@ var AppStore = require('../../../stores/AppStore');
 
 var ChoosePanel = React.createClass({
 	handlerClick:function(){
-		console.log(AppStore.getSaveItem());
+		console.log(AppStore.getShowItems());
 	},
 
 	render: function() {
@@ -17,7 +17,7 @@ var ChoosePanel = React.createClass({
 					<PartIcon label={item.label} item={item} className={item.icon}/>
 				</div>
 			);
-		})
+		});
 
 		return (
         <div className="col-md-2">

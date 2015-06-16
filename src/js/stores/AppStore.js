@@ -128,6 +128,7 @@ var _initParts = [
     }
 ];
 
+// mork 测试数据
 var _showParts=[];
 var _selectPart={};
 var _addTimes = _showParts.length;
@@ -164,15 +165,8 @@ function _addPart(item){
 function _sortPartsItem(newIndex,oldIndex){
 
     // Todo ：排序可能会导致DOM混乱 暂时的解决方法
-    _saveParts =_showParts.slice();
-    if (newIndex >= _saveParts.length) {
-        var k = newIndex - _saveParts.length;
-        while ((k--) + 1) {
-            _saveParts.push(undefined);
-        }
-    }
-    _saveParts.splice(newIndex, 0, _saveParts.splice(oldIndex, 1)[0]);
-
+    //_saveParts =_showParts.slice();
+    _showParts.splice(newIndex, 0, _showParts.splice(oldIndex, 1)[0])
 }
 
 function _selectItem(id){

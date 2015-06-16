@@ -4,8 +4,9 @@
 var React = require('react');
 var AppAction = require('../../actions/AppAction');
 var DeleteBtn = React.createClass({
-	handleClick:function(){
+	handleClick:function(e){
 		AppAction.delectItem(this.props.itemId);
+		e.stopPropagation();
 	},
 	render: function() {
 		return (

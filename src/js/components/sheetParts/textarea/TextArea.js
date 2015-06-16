@@ -17,7 +17,7 @@ var TextArea = React.createClass({
                 <CopyBtn itemId={this.props.data.id} index={this.props.index}/>
                 <DeleteBtn itemId={this.props.data.id}/>
                 <br/>
-                <textarea value={this.props.data.default}  name="" cols="65" rows="4" readOnly="readOnly"></textarea>
+                <textarea value={this.props.data.default}  name="" cols="55" rows="4" readOnly="readOnly"></textarea>
             </div>
         );
     }

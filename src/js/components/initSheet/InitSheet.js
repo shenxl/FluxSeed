@@ -10,9 +10,7 @@ var StoreWatchMixin = require('../../mixins/storeWatchMixin');
 
 function getInitPart(){
     return {
-        initItems : AppStore.getInitPart(),
-        showItems : AppStore.getShowItems(),
-        selectItem :AppStore.getSelectItem()
+        initItems : AppStore.getInitPart()
     }
 }
 
@@ -22,8 +20,8 @@ var InitSheet = React.createClass({
 		return (
         <div>
             <ChoosePanel  items={this.state.initItems}/>
-            <ShowPanel  items={this.state.showItems}/>
-            <PropPanel  item={this.state.selectItem}/>
+            <ShowPanel />
+            <PropPanel />
         </div>
 		);
 	}
